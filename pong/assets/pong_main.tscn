@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://k4vetk354yhx"]
+
+[ext_resource type="Script" uid="uid://dhmi8cj2dg5p5" path="res://pong/scripts/GameManager.cs" id="1_f17p2"]
+[ext_resource type="PackedScene" uid="uid://cqa8q72xjhsbf" path="res://pong/assets/paddle.tscn" id="1_kmeg2"]
+[ext_resource type="PackedScene" uid="uid://bw3o2mgec871j" path="res://pong/assets/wall.tscn" id="2_64xql"]
+[ext_resource type="PackedScene" uid="uid://d3xndxp783jg2" path="res://pong/assets/ball.tscn" id="3_5y5nq"]
+[ext_resource type="PackedScene" uid="uid://d3dw7e0ewchx6" path="res://pong/assets/goal.tscn" id="4_6uxbt"]
+[ext_resource type="Texture2D" uid="uid://cbo1lsus4rf44" path="res://pong/sprites/wall.png" id="6_wep71"]
+
+[node name="pong_main" type="Node2D"]
+script = ExtResource("1_f17p2")
+
+[node name="divider" type="Sprite2D" parent="."]
+position = Vector2(571, 323)
+scale = Vector2(0.128077, 18.4451)
+texture = ExtResource("6_wep71")
+
+[node name="p1" parent="." instance=ExtResource("1_kmeg2")]
+position = Vector2(26, 323)
+isPlayer1 = true
+
+[node name="p2" parent="." instance=ExtResource("1_kmeg2")]
+position = Vector2(1125, 311)
+
+[node name="top_wall" parent="." instance=ExtResource("2_64xql")]
+position = Vector2(572, 0)
+scale = Vector2(40.04, 1)
+
+[node name="top_wall2" parent="." instance=ExtResource("2_64xql")]
+position = Vector2(572, 650)
+scale = Vector2(40.04, 1)
+
+[node name="ball" parent="." instance=ExtResource("3_5y5nq")]
+position = Vector2(573, 312)
+
+[node name="p1Score" type="Label" parent="."]
+offset_left = 295.0
+offset_top = 35.0
+offset_right = 352.0
+offset_bottom = 172.0
+theme_override_font_sizes/font_size = 100
+text = "0"
+
+[node name="p2Score" type="Label" parent="."]
+offset_left = 765.0
+offset_top = 36.0
+offset_right = 822.0
+offset_bottom = 173.0
+theme_override_font_sizes/font_size = 100
+text = "0"
+
+[node name="ballResetPoint" type="Marker2D" parent="."]
+position = Vector2(572, 312)
+
+[node name="goalp1" parent="." instance=ExtResource("4_6uxbt")]
+position = Vector2(1186, 326)
+scale = Vector2(2.4, 33.84)
+
+[node name="goalp2" parent="." instance=ExtResource("4_6uxbt")]
+position = Vector2(-45, 327)
+scale = Vector2(2.50274, 33.7842)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw3o2mgec871j"]
+
+[ext_resource type="Texture2D" uid="uid://cbo1lsus4rf44" path="res://pong/sprites/wall.png" id="1_x1sqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vvfa"]
+size = Vector2(28, 30)
+
+[node name="wall" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 5
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8vvfa")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_x1sqk")

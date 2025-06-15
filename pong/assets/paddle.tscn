@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqa8q72xjhsbf"]
+
+[ext_resource type="Texture2D" uid="uid://b4dhox2cd60ay" path="res://pong/sprites/paddle_sprite.png" id="1_d6uk8"]
+[ext_resource type="Script" uid="uid://bqbqwvv84i1er" path="res://pong/scripts/PlayerController.cs" id="1_qaiig"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qaiig"]
+radius = 17.59
+height = 153.97
+
+[node name="paddle" type="CharacterBody2D"]
+collision_mask = 7
+script = ExtResource("1_qaiig")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_d6uk8")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qaiig")
