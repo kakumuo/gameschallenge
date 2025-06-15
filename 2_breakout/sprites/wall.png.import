@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4dhox2cd60ay"
-path="res://.godot/imported/paddle_sprite.png-41ba7eda1e51e7f39aaeb962034b595e.ctex"
+uid="uid://xtlm464eocn1"
+path="res://.godot/imported/wall.png-8c1fe6bb55a4c467a3280cd29a5a24da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pong/sprites/paddle_sprite.png"
-dest_files=["res://.godot/imported/paddle_sprite.png-41ba7eda1e51e7f39aaeb962034b595e.ctex"]
+source_file="res://2_breakout/sprites/wall.png"
+dest_files=["res://.godot/imported/wall.png-8c1fe6bb55a4c467a3280cd29a5a24da.ctex"]
 
 [params]
 

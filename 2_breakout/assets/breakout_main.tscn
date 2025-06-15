@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo7ir31oum1cj"]
+
+[ext_resource type="PackedScene" uid="uid://bwsc1kovf4j0v" path="res://2_breakout/assets/paddle.tscn" id="1_04wql"]
+[ext_resource type="PackedScene" uid="uid://b3qsrefnbynbg" path="res://2_breakout/assets/wall.tscn" id="2_gdwyw"]
+
+[node name="breakout_main" type="Node2D"]
+
+[node name="paddle" parent="." instance=ExtResource("1_04wql")]
+position = Vector2(575, 568)
+
+[node name="top_wall" parent="." instance=ExtResource("2_gdwyw")]
+position = Vector2(579, -2)
+scale = Vector2(39.88, 1)
+
+[node name="left_wall" parent="." instance=ExtResource("2_gdwyw")]
+position = Vector2(16, 326)
+rotation = -1.5708
+scale = Vector2(22.16, 1)
+
+[node name="right_wall" parent="." instance=ExtResource("2_gdwyw")]
+position = Vector2(1136, 326)
+rotation = -1.5708
+scale = Vector2(22.16, 1)

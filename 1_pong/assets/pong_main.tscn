@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://k4vetk354yhx"]
 
-[ext_resource type="Script" uid="uid://dhmi8cj2dg5p5" path="res://pong/scripts/GameManager.cs" id="1_f17p2"]
-[ext_resource type="PackedScene" uid="uid://cqa8q72xjhsbf" path="res://pong/assets/paddle.tscn" id="1_kmeg2"]
-[ext_resource type="PackedScene" uid="uid://bw3o2mgec871j" path="res://pong/assets/wall.tscn" id="2_64xql"]
-[ext_resource type="PackedScene" uid="uid://d3xndxp783jg2" path="res://pong/assets/ball.tscn" id="3_5y5nq"]
-[ext_resource type="PackedScene" uid="uid://d3dw7e0ewchx6" path="res://pong/assets/goal.tscn" id="4_6uxbt"]
-[ext_resource type="Texture2D" uid="uid://cbo1lsus4rf44" path="res://pong/sprites/wall.png" id="6_wep71"]
+[ext_resource type="Script" uid="uid://dhmi8cj2dg5p5" path="res://1_pong/scripts/GameManager.cs" id="1_f17p2"]
+[ext_resource type="PackedScene" uid="uid://cqa8q72xjhsbf" path="res://1_pong/assets/paddle.tscn" id="1_kmeg2"]
+[ext_resource type="PackedScene" uid="uid://bw3o2mgec871j" path="res://1_pong/assets/wall.tscn" id="2_64xql"]
+[ext_resource type="PackedScene" uid="uid://d3xndxp783jg2" path="res://1_pong/assets/ball.tscn" id="3_5y5nq"]
+[ext_resource type="PackedScene" uid="uid://d3dw7e0ewchx6" path="res://1_pong/assets/goal.tscn" id="4_6uxbt"]
+[ext_resource type="Texture2D" uid="uid://cbo1lsus4rf44" path="res://1_pong/sprites/wall.png" id="6_wep71"]
 
 [node name="pong_main" type="Node2D"]
 script = ExtResource("1_f17p2")
@@ -57,5 +57,5 @@ position = Vector2(1186, 326)
 scale = Vector2(2.4, 33.84)
 
 [node name="goalp2" parent="." instance=ExtResource("4_6uxbt")]
-position = Vector2(-45, 327)
-scale = Vector2(2.50274, 33.7842)
+position = Vector2(-41, 327)
+scale = Vector2(2.50274, 34.144)
