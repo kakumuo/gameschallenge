@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GamesChallenge"
-run/main_scene="uid://k4vetk354yhx"
+run/main_scene="uid://bo7ir31oum1cj"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

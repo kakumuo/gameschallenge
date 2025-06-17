@@ -4,6 +4,9 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters;
 
+namespace PongNamespace
+{
+    
 public partial class GameManager : Node2D
 {
 
@@ -24,18 +27,19 @@ public partial class GameManager : Node2D
         this.ballObj = this.GetNode<CharacterBody2D>("ball") as BallBehavior;
 
         this.p1Goal.BodyEntered += createHandleBodyEnter(isP1: true);
-        this.p2Goal.BodyEntered += createHandleBodyEnter(isP1: false); 
+        this.p2Goal.BodyEntered += createHandleBodyEnter(isP1: false);
 
         this.resetGame();
     }
 
-    private Area2D.BodyEnteredEventHandler createHandleBodyEnter(bool isP1) {
+    private Area2D.BodyEnteredEventHandler createHandleBodyEnter(bool isP1)
+    {
         return (Node2D body) =>
         {
             if (isP1) p1Points += 1;
             else p2Points += 1;
             resetGame();
-        }; 
+        };
     }
 
     private void resetGame()
@@ -45,4 +49,5 @@ public partial class GameManager : Node2D
         this.ballObj.Position = this.ballResetPoint.Position;
         this.ballObj.LaunchBall();
     }
+}
 }
