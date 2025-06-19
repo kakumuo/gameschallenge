@@ -9,8 +9,15 @@
 [node name="breakout_main" type="Node2D"]
 script = ExtResource("1_wlfaw")
 
+[node name="brickGroup" type="ReferenceRect" parent="."]
+z_index = -10
+offset_left = 15.0
+offset_top = 90.0
+offset_right = 1139.0
+offset_bottom = 256.0
+
 [node name="ui" type="Control" parent="."]
-z_index = -1
+z_index = -100
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1155.0
@@ -41,10 +48,10 @@ horizontal_alignment = 2
 
 [node name="ballSpeedLabel" type="Label" parent="ui"]
 layout_mode = 0
-offset_left = 932.0
-offset_top = 549.0
-offset_right = 1142.0
-offset_bottom = 632.0
+offset_left = 446.0
+offset_top = 10.0
+offset_right = 656.0
+offset_bottom = 79.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 50
@@ -76,8 +83,8 @@ position = Vector2(575, 568)
 position = Vector2(576, 532)
 
 [node name="top_wall" parent="." instance=ExtResource("2_gdwyw")]
-position = Vector2(579, -17)
-scale = Vector2(40.28, 1)
+position = Vector2(577, 75)
+scale = Vector2(41.3876, 1)
 
 [node name="left_wall" parent="." instance=ExtResource("2_gdwyw")]
 position = Vector2(-17, 326)
@@ -92,5 +99,3 @@ scale = Vector2(22.4, 1)
 [node name="outbounds_area" parent="." instance=ExtResource("5_4nlx4")]
 position = Vector2(571, 752)
 scale = Vector2(75.0212, 2.71889)
-
-[node name="bricksGroup" type="Node2D" parent="."]

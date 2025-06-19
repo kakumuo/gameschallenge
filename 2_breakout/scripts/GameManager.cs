@@ -10,7 +10,7 @@ namespace BreakoutNamespace
         BallBehavior ball;
         PaddleController paddle;
         Area2D outboundsArea;
-        Node2D bricksGroup; 
+        ReferenceRect brickGroup; 
         float areaPadding = 10f;
         Camera2D camera;
         int playerScore;
@@ -24,7 +24,7 @@ namespace BreakoutNamespace
             outboundsArea = GetNode<Area2D>("outbounds_area");
             camera = GetNode<Camera2D>("camera");
             uiGroup = GetNode<Control>("ui");
-            bricksGroup = GetNode<Node2D>("bricksGroup"); 
+            brickGroup = GetNode<ReferenceRect>("brickGroup"); 
 
             outboundsArea.BodyEntered += (body) =>
             {
@@ -42,7 +42,7 @@ namespace BreakoutNamespace
 
             ball.OnBrickCollision += (targetBrick) =>
             {
-                bricksGroup.RemoveChild(targetBrick); 
+                brickGroup.RemoveChild(targetBrick); 
                 targetBrick.Free();
                 playerScore += (int)(ball.ballVel.DistanceTo(Vector2.Zero) / 100);
             };
@@ -63,18 +63,18 @@ namespace BreakoutNamespace
 
         private void resetGame()
         {
-            foreach (BrickBehavior b in bricksGroup.GetChildren())
+            foreach (BrickBehavior b in brickGroup.GetChildren())
             {
                 b.Free();
             }
 
-            remLives = 1;
+            remLives = 3;
             playerScore = 0; 
 
             paddle.disableInput = false; 
             paddle.GrabBall(ball);
             Vector2 viewportSize = camera.GetViewportRect().Size;
-            InitBricks(10, 7, viewportSize.X, viewportSize.Y * .5f, 20, 10);
+            InitBricks(10, 4, brickGroup.Size.X, brickGroup.Size.Y, 20, 10);
             updateUI();
         }
 
@@ -103,7 +103,7 @@ namespace BreakoutNamespace
                     brickPos.Y = yPos;
                     brickObj.Position = brickPos;
 
-                    bricksGroup.CallDeferred("add_child", brickObj);
+                    brickGroup.CallDeferred("add_child", brickObj);
                     brickObj.CallDeferred("setSize", [rectWidth, rectHeight]);
                 }
             }
