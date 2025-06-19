@@ -10,6 +10,7 @@ public partial class PaddleController : CharacterBody2D
     float moveSpeed = 400f;
     Dictionary<string, Key> inputMap;
     BallBehavior targetBall;
+    public bool disableInput = false; 
     const float BALL_GRAB_OFFSET = 40f;
 
     public override void _Ready()
@@ -26,9 +27,13 @@ public partial class PaddleController : CharacterBody2D
     {
         int moveDir = 0;
 
-        if (Input.IsKeyPressed(inputMap["left"])) moveDir = 1;
-        if (Input.IsKeyPressed(inputMap["right"])) moveDir = -1;
-        if (Input.IsKeyPressed(inputMap["up"])) this.ReleaseBall(Vector2.Up); 
+        if (!disableInput)
+        {
+            if (Input.IsKeyPressed(inputMap["left"])) moveDir = 1;
+            if (Input.IsKeyPressed(inputMap["right"])) moveDir = -1;
+            if (Input.IsKeyPressed(inputMap["up"])) this.ReleaseBall(Vector2.Up); 
+        }
+
         MoveAndCollide(moveDir * Vector2.Left * moveSpeed * ((float)delta));
 
         if (targetBall != null)
@@ -46,7 +51,7 @@ public partial class PaddleController : CharacterBody2D
         Vector2 ballPos = targetBall.Position;
         ballPos.X = Position.X;
         ballPos.Y = Position.Y - BALL_GRAB_OFFSET;
-        targetBall.Position = ballPos; 
+        targetBall.Position = ballPos;
     }
 
     public void ReleaseBall(Vector2 launchVec)

@@ -9,6 +9,66 @@
 [node name="breakout_main" type="Node2D"]
 script = ExtResource("1_wlfaw")
 
+[node name="ui" type="Control" parent="."]
+z_index = -1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1155.0
+offset_bottom = 644.0
+
+[node name="livesGroupLabel" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 189.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="scoreLabel" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = 954.0
+offset_top = 11.0
+offset_right = 1137.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+
+[node name="ballSpeedLabel" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = 932.0
+offset_top = 549.0
+offset_right = 1142.0
+offset_bottom = 632.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+
+[node name="game_over" type="Panel" parent="ui"]
+visible = false
+z_index = -100
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 644.0
+
+[node name="retry_btn" type="Button" parent="ui/game_over"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 320.0
+offset_right = 686.0
+offset_bottom = 361.0
+text = "Retry"
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(577, 320)
+
 [node name="paddle" parent="." instance=ExtResource("1_04wql")]
 position = Vector2(575, 568)
 
@@ -32,3 +92,5 @@ scale = Vector2(22.4, 1)
 [node name="outbounds_area" parent="." instance=ExtResource("5_4nlx4")]
 position = Vector2(571, 752)
 scale = Vector2(75.0212, 2.71889)
+
+[node name="bricksGroup" type="Node2D" parent="."]

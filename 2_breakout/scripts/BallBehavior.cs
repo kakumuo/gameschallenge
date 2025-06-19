@@ -1,14 +1,20 @@
 using Godot;
 using System;
-using System.Drawing;
-
 
 namespace BreakoutNamespace
 {
     public partial class BallBehavior : CharacterBody2D
     {
-        float baseSpeed = 400f; 
-        Vector2 ballVel = new Vector2();
+        float baseSpeed = 400f;
+        private Vector2 _ballVel;
+        public Vector2 ballVel
+        {
+            get => _ballVel;
+            set {
+                _ballVel = value;
+                EmitSignal(SignalName.OnVelocityChanged, value);
+            }
+        }
         const float COLLISION_THRESH = 10f;
         const float SPEED_UP_FACTOR = 1.05f; 
 
@@ -20,13 +26,12 @@ namespace BreakoutNamespace
             {
                 Vector2 colPoint = collision.GetPosition();
 
-                if (Math.Abs(colPoint.X - Position.X) > COLLISION_THRESH) ballVel.X *= -1;
-                if (Math.Abs(colPoint.Y - Position.Y) > COLLISION_THRESH) ballVel.Y *= -1;
+                var tempVel = ballVel;
+                if (Math.Abs(colPoint.X - Position.X) > COLLISION_THRESH) tempVel.X *= -1;
+                if (Math.Abs(colPoint.Y - Position.Y) > COLLISION_THRESH) tempVel.Y *= -1;
 
                 if (collision.GetCollider() is PaddleController)
                 {
-                    float ballSpeed = ballVel.DistanceTo(Vector2.Zero) * SPEED_UP_FACTOR;
-
                     PaddleController paddle = collision.GetCollider() as PaddleController;
                     CollisionShape2D collider = paddle.GetNode<CollisionShape2D>("collider");
                     float paddleWidth = (collider.Shape as RectangleShape2D).Size.X;
@@ -36,16 +41,29 @@ namespace BreakoutNamespace
                     dividing by 2 forces ball to move horizontally outwards
                     */
                     float angle = (paddle.GlobalPosition.X - colPoint.X) / (paddleWidth / 1.25f);
-                    angle = (float)((Math.PI * angle / 2) + Math.PI / 2); 
-                    GD.Print("angle: ", angle);
+                    angle = (float)((Math.PI * angle / 2) + Math.PI / 2);
+                    
                     Vector2 targetDir = new Vector2(
                         (float)Math.Cos(angle),
                         -(float)Math.Sin(angle)
-                    ); 
-                    ballVel = targetDir.Normalized() * ballSpeed; 
+                    );
+                    tempVel = targetDir.Normalized() * tempVel.DistanceTo(Vector2.Zero);
                 }
+                else if (collision.GetCollider() is BrickBehavior)
+                {
+                    EmitSignal(SignalName.OnBrickCollision, collision.GetCollider());
+                    tempVel *= SPEED_UP_FACTOR;
+                }
+
+                ballVel = tempVel; 
             }
         }
+
+        [Signal]
+        public delegate void OnBrickCollisionEventHandler(BrickBehavior targetBrick); 
+
+        [Signal]
+        public delegate void OnVelocityChangedEventHandler(Vector2 newVel); 
 
         public void LaunchBall(Vector2 launchVec)
         {
