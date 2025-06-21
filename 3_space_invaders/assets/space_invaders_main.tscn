@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8b5n63bcswt7"]
+
+[ext_resource type="Script" uid="uid://cs86n7v2mjb1x" path="res://3_space_invaders/scripts/GameManager.cs" id="1_5wskd"]
+
+[node name="space_invaders_main" type="Node2D"]
+script = ExtResource("1_5wskd")
