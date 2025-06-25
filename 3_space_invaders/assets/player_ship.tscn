@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://deqgch68aebll"]
+
+[ext_resource type="Script" uid="uid://ckd0akhwhi5ve" path="res://3_space_invaders/scripts/PlayerController.cs" id="1_3aylx"]
+[ext_resource type="Texture2D" uid="uid://b2irqordpcx3t" path="res://3_space_invaders/sprites/ship_sprite.png" id="1_dw2o2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfky6"]
+size = Vector2(32, 32)
+
+[node name="player_ship" type="StaticBody2D"]
+collision_mask = 5
+script = ExtResource("1_3aylx")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1.02857)
+shape = SubResource("RectangleShape2D_xfky6")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_dw2o2")

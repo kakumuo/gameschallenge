@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://wx0l0wijvil7"]
+
+[ext_resource type="Script" uid="uid://dxs81ouuwct2m" path="res://3_space_invaders/scripts/BulletBehavior.cs" id="1_7wfim"]
+[ext_resource type="Texture2D" uid="uid://dh3smausdvmfm" path="res://3_space_invaders/sprites/bullet_sprite.png" id="1_yfgid"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbcmh"]
+size = Vector2(10, 20)
+
+[node name="bullet" type="StaticBody2D"]
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_7wfim")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fbcmh")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_yfgid")

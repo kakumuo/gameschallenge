@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvt56ovfaxhey"]
+
+[ext_resource type="Script" uid="uid://hijqouwokpkj" path="res://3_space_invaders/scripts/EnemyBehavior.cs" id="1_34ohr"]
+[ext_resource type="Texture2D" uid="uid://coonovym0jnch" path="res://3_space_invaders/sprites/alien_sprite_001.png" id="1_uejth"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjm6a"]
+size = Vector2(22, 22)
+
+[node name="enemy" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 21
+script = ExtResource("1_34ohr")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rjm6a")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_uejth")

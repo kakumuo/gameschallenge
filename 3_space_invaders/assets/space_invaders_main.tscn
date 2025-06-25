@@ -1,6 +1,136 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8b5n63bcswt7"]
+[gd_scene load_steps=5 format=3 uid="uid://b8b5n63bcswt7"]
 
 [ext_resource type="Script" uid="uid://cs86n7v2mjb1x" path="res://3_space_invaders/scripts/GameManager.cs" id="1_5wskd"]
+[ext_resource type="PackedScene" uid="uid://deqgch68aebll" path="res://3_space_invaders/assets/player_ship.tscn" id="3_6j544"]
+[ext_resource type="PackedScene" uid="uid://dqke8kql7gd83" path="res://3_space_invaders/assets/wall.tscn" id="3_tslgq"]
+[ext_resource type="PackedScene" uid="uid://bvt56ovfaxhey" path="res://3_space_invaders/assets/enemy.tscn" id="4_6j544"]
 
 [node name="space_invaders_main" type="Node2D"]
 script = ExtResource("1_5wskd")
+
+[node name="game_bounds" type="ReferenceRect" parent="."]
+offset_left = -200.0
+offset_top = -323.0
+offset_right = 200.0
+offset_bottom = 323.0
+
+[node name="ui_group" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="score_label" type="Label" parent="ui_group"]
+layout_mode = 0
+offset_left = -192.0
+offset_top = 293.0
+offset_right = -152.0
+offset_bottom = 316.0
+text = "Score: "
+
+[node name="lives_label" type="Label" parent="ui_group"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 292.0
+offset_right = 197.0
+offset_bottom = 341.0
+text = "Lives: ▲ ▲ ▲
+"
+horizontal_alignment = 2
+
+[node name="camera" type="Camera2D" parent="."]
+visible = false
+
+[node name="right_wall" parent="." instance=ExtResource("3_tslgq")]
+position = Vector2(389, 2)
+scale = Vector2(5.86388, 10.2655)
+
+[node name="left_wall" parent="." instance=ExtResource("3_tslgq")]
+position = Vector2(-389, 2)
+scale = Vector2(5.86388, 10.2655)
+
+[node name="player_ship" parent="." instance=ExtResource("3_6j544")]
+position = Vector2(0, 251)
+
+[node name="bot_wall" parent="." instance=ExtResource("3_tslgq")]
+z_index = -1
+position = Vector2(1, 303)
+scale = Vector2(6.33171, 0.680878)
+
+[node name="top_wall" parent="." instance=ExtResource("3_tslgq")]
+position = Vector2(1, -346)
+scale = Vector2(6.33171, 0.680878)
+
+[node name="enemy_group" type="Node2D" parent="."]
+
+[node name="enemy" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-149, -279)
+
+[node name="enemy2" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-88, -279)
+
+[node name="enemy3" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-27, -279)
+
+[node name="enemy4" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(34, -279)
+
+[node name="enemy5" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(93, -279)
+
+[node name="enemy6" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(149, -279)
+
+[node name="enemy7" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-149, -228)
+
+[node name="enemy8" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-88, -228)
+
+[node name="enemy9" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-27, -228)
+
+[node name="enemy10" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(34, -228)
+
+[node name="enemy11" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(93, -228)
+
+[node name="enemy12" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(149, -228)
+
+[node name="enemy13" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-149, -177)
+
+[node name="enemy14" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-88, -177)
+
+[node name="enemy15" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-27, -177)
+
+[node name="enemy16" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(34, -177)
+
+[node name="enemy17" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(93, -177)
+
+[node name="enemy18" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(149, -177)
+
+[node name="enemy19" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-149, -126)
+
+[node name="enemy20" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-88, -126)
+
+[node name="enemy21" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(-27, -126)
+
+[node name="enemy22" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(34, -126)
+
+[node name="enemy23" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(93, -126)
+
+[node name="enemy24" parent="enemy_group" instance=ExtResource("4_6j544")]
+position = Vector2(149, -126)

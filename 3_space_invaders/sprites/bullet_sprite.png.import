@@ -2,25 +2,25 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://icy04a6v44dc"
-path="res://.godot/imported/player_sprite.png-ba5b3307748261726ec5113c31009170.ctex"
+uid="uid://dh3smausdvmfm"
+path="res://.godot/imported/bullet_sprite.png-eb18d224a04cae25cd29a72d54f348f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://3_space_invaders/sprites/player_sprite.png"
-dest_files=["res://.godot/imported/player_sprite.png-ba5b3307748261726ec5113c31009170.ctex"]
+source_file="res://3_space_invaders/sprites/bullet_sprite.png"
+dest_files=["res://.godot/imported/bullet_sprite.png-eb18d224a04cae25cd29a72d54f348f5.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=1.0
 compress/hdr_compression=1
 compress/normal_map=0
-compress/channel_pack=0
+compress/channel_pack=1
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
