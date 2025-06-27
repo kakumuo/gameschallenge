@@ -10,6 +10,7 @@ size = Vector2(22, 22)
 collision_layer = 16
 collision_mask = 21
 script = ExtResource("1_34ohr")
+enemyLevel = 2
 
 [node name="collider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rjm6a")

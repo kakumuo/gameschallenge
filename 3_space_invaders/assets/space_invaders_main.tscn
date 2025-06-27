@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8b5n63bcswt7"]
+[gd_scene load_steps=4 format=3 uid="uid://b8b5n63bcswt7"]
 
 [ext_resource type="Script" uid="uid://cs86n7v2mjb1x" path="res://3_space_invaders/scripts/GameManager.cs" id="1_5wskd"]
 [ext_resource type="PackedScene" uid="uid://deqgch68aebll" path="res://3_space_invaders/assets/player_ship.tscn" id="3_6j544"]
 [ext_resource type="PackedScene" uid="uid://dqke8kql7gd83" path="res://3_space_invaders/assets/wall.tscn" id="3_tslgq"]
-[ext_resource type="PackedScene" uid="uid://bvt56ovfaxhey" path="res://3_space_invaders/assets/enemy.tscn" id="4_6j544"]
 
 [node name="space_invaders_main" type="Node2D"]
 script = ExtResource("1_5wskd")
@@ -61,76 +60,28 @@ scale = Vector2(6.33171, 0.680878)
 position = Vector2(1, -346)
 scale = Vector2(6.33171, 0.680878)
 
-[node name="enemy_group" type="Node2D" parent="."]
+[node name="game_over_group" type="Panel" parent="."]
+process_mode = 3
+visible = false
+offset_left = -200.0
+offset_top = -326.0
+offset_right = 204.0
+offset_bottom = 281.0
 
-[node name="enemy" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-149, -279)
+[node name="label" type="Label" parent="game_over_group"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 133.0
+offset_right = 338.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
 
-[node name="enemy2" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-88, -279)
-
-[node name="enemy3" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-27, -279)
-
-[node name="enemy4" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(34, -279)
-
-[node name="enemy5" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(93, -279)
-
-[node name="enemy6" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(149, -279)
-
-[node name="enemy7" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-149, -228)
-
-[node name="enemy8" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-88, -228)
-
-[node name="enemy9" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-27, -228)
-
-[node name="enemy10" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(34, -228)
-
-[node name="enemy11" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(93, -228)
-
-[node name="enemy12" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(149, -228)
-
-[node name="enemy13" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-149, -177)
-
-[node name="enemy14" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-88, -177)
-
-[node name="enemy15" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-27, -177)
-
-[node name="enemy16" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(34, -177)
-
-[node name="enemy17" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(93, -177)
-
-[node name="enemy18" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(149, -177)
-
-[node name="enemy19" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-149, -126)
-
-[node name="enemy20" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-88, -126)
-
-[node name="enemy21" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(-27, -126)
-
-[node name="enemy22" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(34, -126)
-
-[node name="enemy23" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(93, -126)
-
-[node name="enemy24" parent="enemy_group" instance=ExtResource("4_6j544")]
-position = Vector2(149, -126)
+[node name="retry_button" type="Button" parent="game_over_group"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 326.0
+offset_right = 265.0
+offset_bottom = 403.0
+theme_override_font_sizes/font_size = 50
+text = "Retry"

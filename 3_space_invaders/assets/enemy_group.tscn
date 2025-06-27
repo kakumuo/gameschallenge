@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=3 uid="uid://csar5n4vpbjv1"]
+
+[ext_resource type="PackedScene" uid="uid://bvt56ovfaxhey" path="res://3_space_invaders/assets/enemy.tscn" id="1_2dxcp"]
+
+[node name="enemy_group" type="Node2D"]
+
+[node name="enemy" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-149, -279)
+
+[node name="enemy2" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-88, -279)
+
+[node name="enemy3" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-27, -279)
+
+[node name="enemy4" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(34, -279)
+
+[node name="enemy5" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(93, -279)
+
+[node name="enemy6" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(149, -279)
+
+[node name="enemy7" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-149, -228)
+
+[node name="enemy8" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-88, -228)
+
+[node name="enemy9" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-27, -228)
+
+[node name="enemy10" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(34, -228)
+
+[node name="enemy11" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(93, -228)
+
+[node name="enemy12" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(149, -228)
+
+[node name="enemy13" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-149, -177)
+enemyLevel = 1
+
+[node name="enemy14" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-88, -177)
+enemyLevel = 1
+
+[node name="enemy15" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-27, -177)
+enemyLevel = 1
+
+[node name="enemy16" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(34, -177)
+enemyLevel = 1
+
+[node name="enemy17" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(93, -177)
+enemyLevel = 1
+
+[node name="enemy18" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(149, -177)
+enemyLevel = 1
+
+[node name="enemy19" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-149, -126)
+enemyLevel = 1
+
+[node name="enemy20" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-88, -126)
+enemyLevel = 1
+
+[node name="enemy21" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(-27, -126)
+enemyLevel = 1
+
+[node name="enemy22" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(34, -126)
+enemyLevel = 1
+
+[node name="enemy23" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(93, -126)
+enemyLevel = 1
+
+[node name="enemy24" parent="." instance=ExtResource("1_2dxcp")]
+position = Vector2(149, -126)
+enemyLevel = 1

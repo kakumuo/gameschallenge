@@ -9,12 +9,12 @@ namespace SpaceInvadersNS
 
         [Export] float moveSpeed = 5;
 
-        private Dictionary<String, Key> inputMap;
+        private Dictionary<string, Key> inputMap;
         private bool disableInput;
         PackedScene bulletRes;
         private bool didFire = false;
         private DateTime lastFireTS;
-        private TimeSpan FIRE_THRESH = new TimeSpan(5000_000); 
+        private TimeSpan FIRE_THRESH = new TimeSpan(5000_000);
 
         public override void _Ready()
         {
@@ -38,21 +38,27 @@ namespace SpaceInvadersNS
             {
                 if (Input.IsKeyPressed(inputMap["left"])) moveDir = -1;
                 if (Input.IsKeyPressed(inputMap["right"])) moveDir = 1;
-                if (Input.IsKeyPressed(inputMap["shoot"]) && (DateTime.Now - lastFireTS > FIRE_THRESH)) FireBullet(); 
+                if (Input.IsKeyPressed(inputMap["shoot"]) && (DateTime.Now - lastFireTS > FIRE_THRESH)) FireBullet();
             }
 
-            MoveAndCollide(new Vector2(moveDir * moveSpeed, 0));    
+            MoveAndCollide(new Vector2(moveDir * moveSpeed, 0));
         }
 
-        [Signal] public delegate void OnPlayerFireEventHandler(); 
-
+        [Signal] public delegate void OnPlayerFireEventHandler();
         private void FireBullet()
         {
             lastFireTS = DateTime.Now;
             BulletBehavior bullet = bulletRes.Instantiate<BulletBehavior>();
             bullet.Position = Position + Vector2.Up * 50;
             GetTree().Root.AddChild(bullet);
-            EmitSignal(SignalName.OnPlayerFire); 
+            EmitSignal(SignalName.OnPlayerFire);
+        }
+
+
+        [Signal] public delegate void OnPlayerDamagedEventHandler(); 
+        public void ApplyDamage()
+        {
+            EmitSignal(SignalName.OnPlayerDamaged); 
         }
     }
 }
