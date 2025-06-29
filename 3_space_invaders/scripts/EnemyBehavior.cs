@@ -9,7 +9,8 @@ public partial class EnemyBehavior : StaticBody2D
     private Sprite2D sprite;
     private DateTime lastFireTS;
     private TimeSpan fireRateThresh;
-    private PackedScene bulletRes; 
+    private PackedScene bulletRes;
+    private int maxBullets = 10; 
 
     public override void _Ready()
     {
@@ -40,10 +41,19 @@ public partial class EnemyBehavior : StaticBody2D
 
     public void DoFire()
     {
+        // check number of bullets
+        int count = 0; 
+        foreach (var bullet in GetTree().Root.GetChildren())
+        {
+            if (bullet is BulletBehavior) count++; 
+        }
+
+        if (count >= maxBullets) return; 
+
         BulletBehavior bulletObj = bulletRes.Instantiate<BulletBehavior>(); 
         bulletObj.bulletOwner = BulletBehavior.BulletOwnerType.ENEMY;
         bulletObj.Position = GlobalPosition + (Vector2.Down * 2);
-        bulletObj.bulletSpeed = 100f; 
+        bulletObj.bulletSpeed = 100f;
         GetTree().Root.AddChild(bulletObj);  
     
         lastFireTS = DateTime.Now;

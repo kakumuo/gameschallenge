@@ -13,6 +13,29 @@ offset_top = -323.0
 offset_right = 200.0
 offset_bottom = 323.0
 
+[node name="camera" type="Camera2D" parent="."]
+visible = false
+
+[node name="right_wall" parent="." instance=ExtResource("3_tslgq")]
+position = Vector2(389, 2)
+scale = Vector2(5.86388, 10.2655)
+
+[node name="left_wall" parent="." instance=ExtResource("3_tslgq")]
+position = Vector2(-389, 2)
+scale = Vector2(5.86388, 10.2655)
+
+[node name="player_ship" parent="." instance=ExtResource("3_6j544")]
+position = Vector2(0, 251)
+
+[node name="bot_wall" parent="." instance=ExtResource("3_tslgq")]
+z_index = -1
+position = Vector2(1, 303)
+scale = Vector2(6.33171, 0.680878)
+
+[node name="top_wall" parent="." instance=ExtResource("3_tslgq")]
+position = Vector2(1, -346)
+scale = Vector2(6.33171, 0.680878)
+
 [node name="ui_group" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -36,29 +59,6 @@ offset_bottom = 341.0
 text = "Lives: ▲ ▲ ▲
 "
 horizontal_alignment = 2
-
-[node name="camera" type="Camera2D" parent="."]
-visible = false
-
-[node name="right_wall" parent="." instance=ExtResource("3_tslgq")]
-position = Vector2(389, 2)
-scale = Vector2(5.86388, 10.2655)
-
-[node name="left_wall" parent="." instance=ExtResource("3_tslgq")]
-position = Vector2(-389, 2)
-scale = Vector2(5.86388, 10.2655)
-
-[node name="player_ship" parent="." instance=ExtResource("3_6j544")]
-position = Vector2(0, 251)
-
-[node name="bot_wall" parent="." instance=ExtResource("3_tslgq")]
-z_index = -1
-position = Vector2(1, 303)
-scale = Vector2(6.33171, 0.680878)
-
-[node name="top_wall" parent="." instance=ExtResource("3_tslgq")]
-position = Vector2(1, -346)
-scale = Vector2(6.33171, 0.680878)
 
 [node name="game_over_group" type="Panel" parent="."]
 process_mode = 3
@@ -85,3 +85,5 @@ offset_right = 265.0
 offset_bottom = 403.0
 theme_override_font_sizes/font_size = 50
 text = "Retry"
+
+[node name="bullet_group" type="Node2D" parent="."]

@@ -92,6 +92,10 @@ namespace SpaceInvadersNS
                 enemyGroup.Free();
             }
 
+            foreach(var bullet in GetTree().Root.GetChildren()){
+                if (bullet is BulletBehavior) bullet.Free();  
+            }
+
             enemyGroup = enemyGroupRes.Instantiate<Node2D>();
             foreach (EnemyBehavior enemy in enemyGroup.GetChildren())
             {

@@ -56,7 +56,11 @@ namespace SpaceInvadersNS
                 else if (col.GetCollider() is BulletBehavior && bulletOwner == BulletOwnerType.PLAYER && (col.GetCollider() as BulletBehavior).bulletOwner == BulletOwnerType.ENEMY)
                 {
                     Free();
-                    col.GetCollider().Free(); 
+                    col.GetCollider().Free();
+                }
+                else
+                {
+                    Free(); 
                 }
             }
         }
