@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://tnfj0u20w67f"]
+
+[ext_resource type="Script" uid="uid://bl0k283ddhw7g" path="res://4_asteroids/scripts/GameManager.cs" id="1_2pf37"]
+[ext_resource type="PackedScene" uid="uid://sx61y3w8fmq0" path="res://4_asteroids/assets/player_ship.tscn" id="1_hkvhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pf37"]
+size = Vector2(1148, 652)
+
+[node name="asteroids_main" type="Node2D"]
+script = ExtResource("1_2pf37")
+
+[node name="game_area" type="Area2D" parent="."]
+
+[node name="collider" type="CollisionShape2D" parent="game_area"]
+shape = SubResource("RectangleShape2D_2pf37")
+debug_color = Color(0, 0.0705418, 0.0261619, 0.42)
+
+[node name="camera" type="Camera2D" parent="."]
+
+[node name="player_ship" parent="." instance=ExtResource("1_hkvhg")]
