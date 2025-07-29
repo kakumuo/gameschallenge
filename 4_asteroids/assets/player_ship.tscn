@@ -6,10 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h75wb"]
 size = Vector2(63, 62)
 
-[node name="player_ship" type="CharacterBody2D"]
+[node name="player_ship" type="Area2D"]
+scale = Vector2(1.00371, 1)
+collision_mask = 16
 script = ExtResource("1_pvo2d")
 
 [node name="sprite" type="Sprite2D" parent="."]
+rotation = -1.57079
 texture = ExtResource("2_ikgca")
 
 [node name="collider" type="CollisionShape2D" parent="."]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfwh12nb3rq5x"]
+
+[ext_resource type="Texture2D" uid="uid://520wuqb7ae30" path="res://4_asteroids/sprites/asteroid_01.png" id="1_2ju3o"]
+[ext_resource type="Script" uid="uid://je2xkjskwcba" path="res://4_asteroids/scripts/AsteroidBehavior.cs" id="1_s2ytu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl5er"]
+resource_local_to_scene = true
+
+[node name="asteroid" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_s2ytu")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wl5er")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_2ju3o")
