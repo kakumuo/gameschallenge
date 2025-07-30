@@ -51,7 +51,6 @@ namespace AsteroidsNamespce
             collider = GetNode<CollisionShape2D>("collider");
 
             bulletRes = ResourceLoader.Load<PackedScene>("res://4_asteroids/assets/bullet.tscn");
-            
 
             targetVel = Vector2.Zero;
             facingAngle = 0;
@@ -87,6 +86,14 @@ namespace AsteroidsNamespce
             };        
         }
 
+        public void ResetPlayer()
+        {
+            targetVel = Vector2.Zero; 
+            Position = Vector2.Zero; 
+            curAmmo = maxAmmo;
+            remHealth = maxHealth; 
+        }
+
         public override void _Process(double delta)
         {
             Vector2 moveVec = Vector2.Zero;
@@ -110,7 +117,7 @@ namespace AsteroidsNamespce
             RotationDegrees = targetAngle;
 
             Vector2 targetMoveVec = targetVel * targetMoveSpeed;
-            Position += targetMoveVec * (float)delta * 100; 
+            Position += targetMoveVec * (float)delta * 100;
         }
 
         private void DoFire()

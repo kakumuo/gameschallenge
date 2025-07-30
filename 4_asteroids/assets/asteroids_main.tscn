@@ -1,11 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://tnfj0u20w67f"]
+[gd_scene load_steps=11 format=3 uid="uid://tnfj0u20w67f"]
 
 [ext_resource type="Script" uid="uid://bl0k283ddhw7g" path="res://4_asteroids/scripts/GameManager.cs" id="1_2pf37"]
 [ext_resource type="PackedScene" uid="uid://sx61y3w8fmq0" path="res://4_asteroids/assets/player_ship.tscn" id="1_hkvhg"]
 [ext_resource type="Texture2D" uid="uid://te52bbgpk85v" path="res://4_asteroids/sprites/gunWeaponIcon.png" id="3_r7ehk"]
+[ext_resource type="Texture2D" uid="uid://dditiqhovfc1b" path="res://4_asteroids/sprites/bkg_layer0.png" id="4_ufo2i"]
+[ext_resource type="Texture2D" uid="uid://b11gqj1mg8nj6" path="res://4_asteroids/sprites/bkg_layer1.png" id="5_7jdjf"]
+[ext_resource type="Texture2D" uid="uid://di40irjth2eut" path="res://4_asteroids/sprites/bkg_layer2.png" id="6_chob4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pf37"]
 size = Vector2(1148, 563)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7gjg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7ehk"]
+bg_color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_r7ehk"]
 _data = {
@@ -15,6 +24,17 @@ point_count = 6
 
 [node name="asteroids_main" type="Node2D"]
 script = ExtResource("1_2pf37")
+
+[node name="bkg" type="Node2D" parent="."]
+
+[node name="bkgSprite" type="Sprite2D" parent="bkg"]
+texture = ExtResource("4_ufo2i")
+
+[node name="bkgLayer1" type="Sprite2D" parent="bkg"]
+texture = ExtResource("5_7jdjf")
+
+[node name="bkgLayer2" type="Sprite2D" parent="bkg"]
+texture = ExtResource("6_chob4")
 
 [node name="game_area" type="Area2D" parent="."]
 collision_layer = 2
@@ -37,23 +57,18 @@ offset_top = -325.0
 offset_right = 575.0
 offset_bottom = 321.0
 
-[node name="fuelGague" type="ProgressBar" parent="ui"]
-layout_mode = 0
-offset_left = 684.0
-offset_top = 7.0
-offset_right = 1138.0
-offset_bottom = 34.0
-
 [node name="topPane" type="Panel" parent="ui"]
 layout_mode = 0
 offset_right = 1148.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7gjg")
 
 [node name="botPane" type="Panel" parent="ui"]
 layout_mode = 0
 offset_top = 606.0
 offset_right = 1148.0
 offset_bottom = 646.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7gjg")
 
 [node name="reloadProgress" type="ProgressBar" parent="ui"]
 layout_mode = 0
@@ -93,6 +108,44 @@ offset_top = 606.0
 offset_right = 750.0
 offset_bottom = 646.0
 texture = ExtResource("3_r7ehk")
+
+[node name="gameover" type="Panel" parent="ui"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 646.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r7ehk")
+
+[node name="gameOverLabel" type="Label" parent="ui/gameover"]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 165.0
+offset_right = 765.0
+offset_bottom = 231.0
+theme_override_font_sizes/font_size = 25
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="scoreLabel" type="Label" parent="ui/gameover"]
+offset_left = 388.0
+offset_top = 259.0
+offset_right = 765.0
+offset_bottom = 325.0
+theme_override_font_sizes/font_size = 25
+text = "Score: "
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ui/gameover"]
+process_mode = 3
+z_index = 2
+layout_mode = 0
+offset_left = 362.0
+offset_top = 448.0
+offset_right = 786.0
+offset_bottom = 507.0
+theme_override_font_sizes/font_size = 25
+text = "Retry"
 
 [node name="asteroidSpawnPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_r7ehk")

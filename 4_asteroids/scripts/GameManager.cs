@@ -19,6 +19,11 @@ namespace AsteroidsNamespce
         Area2D gameArea;
         Control uiGroup;
         PathFollow2D spawnPath;
+        Control gameOverGroup;
+
+        Node2D bkg;
+        float bkgScaling1 = .01f;
+        float bkgScaling2 = .05f; 
 
         DateTime lastSpawnTS;
         TimeSpan initialSpawnRate;
@@ -30,12 +35,24 @@ namespace AsteroidsNamespce
             gameArea = GetNode<Area2D>("game_area");
             uiGroup = GetNode<Control>("ui");
             spawnPath = GetNode<Path2D>("asteroidSpawnPath").GetNode<PathFollow2D>("follow");
+            gameOverGroup = uiGroup.GetNode<Control>("gameover");
+            bkg = GetNode<Node2D>("bkg"); 
 
             player.OnPlayerKilled += () =>
             {
-                GD.Print("Player killed"); 
-                //TODO: add game resetting and kill screen
-            }; 
+                GD.Print("Player killed");
+                GetTree().Paused = true;
+                gameOverGroup.GetNode<Label>("scoreLabel").Text = "Score: " + score;
+                gameOverGroup.Visible = true;
+            };
+
+            gameOverGroup.GetNode<Button>("Button").Pressed += () =>
+            {
+                GD.Print("Resetting game"); 
+                GetTree().Paused = false;
+                gameOverGroup.Visible = false;
+                ResetGame();
+            };
 
             // init ui
             UpdateUI();
@@ -53,6 +70,57 @@ namespace AsteroidsNamespce
                 }
             };
 
+            ResetGame(); 
+        }
+
+        public override void _Process(double delta)
+        {
+            UpdateUI();
+            QueueRedraw();
+
+            if (DateTime.Now - lastDifficultyInc > difficultyIncSpan)
+            {
+                difficultyScaling += 1;
+                lastDifficultyInc = DateTime.Now;
+                spawnRateSpan = initialSpawnRate / (1 + (difficultyScaling * .1f));
+            }
+
+            if (DateTime.Now - lastScoreUpdate > scoreUpdateSpan)
+            {
+                score += difficultyScaling * 5;
+                lastScoreUpdate = DateTime.Now;
+            }
+
+            if (DateTime.Now - lastSpawnTS > spawnRateSpan)
+            {
+                spawnPath.ProgressRatio = GD.Randf();
+                // FIXME: respawning asteroids changes asteroid size
+                PackedScene asteroidRes = ResourceLoader.Load<PackedScene>("res://4_asteroids/assets/asteroid.tscn");
+                AsteroidBehavior asteroidObj = asteroidRes.Instantiate<AsteroidBehavior>();
+                GetTree().Root.AddChild(asteroidObj);
+                asteroidObj.spawn((int)Math.Floor(GD.Randf() * 3), spawnPath.Position, (player.Position - spawnPath.Position).Normalized() * (1 + (difficultyScaling * .01f)));
+                asteroidObj.OnAsteroidDestroyed += (asteroidType) =>
+                {
+                    score += (asteroidType + 1) * difficultyScaling * 100;
+                };
+                lastSpawnTS = DateTime.Now;
+            }
+
+            // update background parallax
+            bkg.GetNode<Sprite2D>("bkgLayer1").Position = player.Position * bkgScaling1; 
+            bkg.GetNode<Sprite2D>("bkgLayer2").Position = player.Position * bkgScaling2; 
+        }
+
+        public void ResetGame()
+        {
+            foreach (GodotObject node in GetTree().Root.GetChildren())
+            {
+                if (node is BulletBehavior || node is AsteroidBehavior) node.Free();
+            }
+
+            player.ResetPlayer(); 
+            score = 0; 
+
             // respawn
             lastSpawnTS = DateTime.Now;
             initialSpawnRate = new TimeSpan(2000 * 10_000);
@@ -67,40 +135,6 @@ namespace AsteroidsNamespce
             scoreUpdateSpan = new TimeSpan(1000 * 10_000); 
         }
 
-        public override void _Process(double delta)
-        {
-            UpdateUI();
-            QueueRedraw();
-
-            if (DateTime.Now - lastDifficultyInc > difficultyIncSpan)
-            {
-                difficultyScaling += 1;
-                lastDifficultyInc = DateTime.Now;
-                spawnRateSpan = initialSpawnRate / (1 + (difficultyScaling * .1f)); 
-            }
-
-            if (DateTime.Now - lastScoreUpdate > scoreUpdateSpan)
-            {
-                score += difficultyScaling * 5;
-                lastScoreUpdate = DateTime.Now; 
-            }
-
-            if (DateTime.Now - lastSpawnTS > spawnRateSpan)
-            {
-                spawnPath.ProgressRatio = GD.Randf();
-                // FIXME: respawning asteroids changes asteroid size
-                PackedScene asteroidRes = ResourceLoader.Load<PackedScene>("res://4_asteroids/assets/asteroid.tscn");
-                AsteroidBehavior asteroidObj = asteroidRes.Instantiate<AsteroidBehavior>();
-                GetTree().Root.AddChild(asteroidObj);
-                asteroidObj.spawn((int)Math.Floor(GD.Randf() * 3), spawnPath.Position, (player.Position - spawnPath.Position).Normalized() * (1 + (difficultyScaling * .01f)));
-                asteroidObj.OnAsteroidDestroyed += (asteroidType) =>
-                {
-                    score += (asteroidType + 1) * difficultyScaling * 100; 
-                }; 
-                lastSpawnTS = DateTime.Now;
-            }
-        }
-
         public void UpdateUI()
         {
             // init ui
@@ -108,13 +142,13 @@ namespace AsteroidsNamespce
             {
                 uiGroup.GetNode<Label>("bulletsLabel").Text = String.Concat(Enumerable.Repeat("[x]", player.curAmmo));
                 uiGroup.GetNode<Label>("healthLabel").Text = String.Concat(Enumerable.Repeat("❤️", player.remHealth));
-                uiGroup.GetNode<Label>("scoreLabel").Text = "Score: " + score.ToString().PadLeft(10, '0'); 
+                uiGroup.GetNode<Label>("scoreLabel").Text = "Score: " + score.ToString().PadLeft(10, '0');
                 if (player.reloadTimer.isEnabled)
                 {
                     uiGroup.GetNode<ProgressBar>("reloadProgress").MaxValue = 1;
                     uiGroup.GetNode<ProgressBar>("reloadProgress").Value = player.reloadTimer.getCompletionRatio();
                 }
-            }   
+            }
         }
 
         public override void _Draw()

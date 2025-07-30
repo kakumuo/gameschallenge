@@ -32,7 +32,7 @@ namespace AsteroidsNamespce
                 asteroidHealth = 20;
                 targetSpritePath = "res://4_asteroids/sprites/asteroid_01.png";
                 (shape.Shape as RectangleShape2D).Size = new Vector2(20, 20);
-                this.moveDir *= 5;
+                this.moveDir *= 3;
             }
             else if (asteroidType == 1)
             {
